@@ -1,0 +1,7 @@
+This project uses the following items from Poly (http://poly.google.com):
+
+Title: Gas Station
+Author: Alex “SAFFY” Safayan
+URL: https://poly.google.com/view/7rUkCX-AIR2
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
