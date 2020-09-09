@@ -349,49 +349,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &1805180622
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1805180623}
-  - component: {fileID: 1805180624}
-  m_Layer: 0
-  m_Name: Hand Presence
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1805180623
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805180622}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8560157, y: 0.66027844, z: 2.6377788}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1805180624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805180622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b1014c704f4ed14aa6921cc2d415de9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2146764779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,7 +1924,7 @@ MonoBehaviour:
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
-  m_ModelPrefab: {fileID: 7700540604599618087, guid: e6965c3f95852b54a91152be7dd37685,
+  m_ModelPrefab: {fileID: 7249086415670850070, guid: 93d966efe44bd0f4a99db4dedd99640e,
     type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
@@ -2295,7 +2252,7 @@ MonoBehaviour:
   m_ActivateUsage: 2
   m_UIPressUsage: 2
   m_AxisToPressThreshold: 0.1
-  m_ModelPrefab: {fileID: 7700540604599618087, guid: e6965c3f95852b54a91152be7dd37685,
+  m_ModelPrefab: {fileID: 7249086415670850070, guid: 93d966efe44bd0f4a99db4dedd99640e,
     type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
