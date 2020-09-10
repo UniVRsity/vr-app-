@@ -5,56 +5,98 @@ using UnityEngine.XR;
 
 public class HandPresence : MonoBehaviour
 {
+
+    public bool showController = false;
+    public InputDeviceCharacteristics controllerCharacteristics;
+    public GameObject handModelPrefab;
     private InputDevice targetDevice;
     public List<GameObject> controllerPrefabs;
     private GameObject spawnController;
+
+    private GameObject spawnedHandModel;
+
+    private Animator handAnimator;
     // Start is called before the first frame update
     void Start()
     {
-      List<InputDevice> devices = new List<InputDevice>();
-      InputDeviceCharacteristics rightControllerCharacteristics = InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
-      InputDevices.GetDevicesWithCharacteristics(rightControllerCharacteristics, devices);
+        tryInitialize();
+        Debug.Log(targetDevice.isValid);
+        InvokeRepeating("sendPulse", 2,2);
+    }
 
-      foreach( var item in devices)
-      {
-          Debug.Log(item.name+item.characteristics);
-      }
+    void sendPulse()
+    {
+        targetDevice.TryGetHapticCapabilities(out HapticCapabilities capabilities);
+        if (targetDevice.name.Contains("Left")){
+            targetDevice.SendHapticImpulse(0,0.3f,1);
+        }
+    }
 
-      if (devices.Count > 0)
-      {
-        targetDevice = devices[0];
-        GameObject prefab = controllerPrefabs.Find(controller => controller.name == targetDevice.name);
-        if (prefab)
+    void tryInitialize()
+    {
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, devices);
+
+        if (devices.Count > 0)
         {
-          spawnController = Instantiate(prefab, transform);
+            targetDevice = devices[0];
+            
+            GameObject prefab = controllerPrefabs.Find(controller => controller.name == targetDevice.name);
+            if (prefab)
+            {
+                spawnController = Instantiate(prefab, transform);
+            }
+            else
+            {
+                Debug.LogError("Did not find corresponding controller model");
+                spawnController = Instantiate(controllerPrefabs[0], transform);
+            }
+            spawnedHandModel = Instantiate(handModelPrefab, transform);
+            handAnimator = spawnedHandModel.GetComponent<Animator>();
+        }
+
+    }
+    void updateHandAnimation()
+    {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+        {
+            handAnimator.SetFloat("Trigger", triggerValue);
         }
         else
         {
-          Debug.LogError("Did not find corresponding controller model");
-          spawnController = Instantiate(controllerPrefabs[0], transform);
-
+            handAnimator.SetFloat("Trigger", 0);
         }
-      }
-
+        if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
+        {
+            handAnimator.SetFloat("Grip", gripValue);
+        }
+        else
+        {
+            handAnimator.SetFloat("Grip", 0);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryButtonValue) && primaryButtonValue)
-        {
-          Debug.Log("Primary Button is pressed");
-        }
-        
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
-        {
-          Debug.Log(triggerValue);
-        }
-        
-        if(targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 primary2DAxisValue))
-        {
-          Debug.Log("primary touch pad value" + primary2DAxisValue);
-        }
 
+        if (!targetDevice.isValid)
+        {
+            tryInitialize();
+        }
+        else
+        {
+            if (showController)
+            {
+                spawnedHandModel.SetActive(false);
+                spawnController.SetActive(true);
+            }
+            else
+            {
+                spawnedHandModel.SetActive(true);
+                spawnController.SetActive(false);
+                updateHandAnimation();
+            }
+        }
     }
 }
