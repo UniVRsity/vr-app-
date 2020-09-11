@@ -20,16 +20,16 @@ public class HandPresence : MonoBehaviour
     void Start()
     {
         tryInitialize();
-        Debug.Log(targetDevice.isValid);
         InvokeRepeating("sendPulse", 2,2);
     }
 
     void sendPulse()
     {
         targetDevice.TryGetHapticCapabilities(out HapticCapabilities capabilities);
-        if (targetDevice.name.Contains("Left")){
-            targetDevice.SendHapticImpulse(0,0.3f,1);
-        }
+        targetDevice.TryGetFeatureValue(CommonUsages.userPresence, out bool batteryLevel);
+        // if (targetDevice.name.Contains("Left")){
+        //     targetDevice.SendHapticImpulse(0,0.3f,1);
+        // }
     }
 
     void tryInitialize()
