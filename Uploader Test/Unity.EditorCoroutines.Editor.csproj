@@ -241,15 +241,6 @@
     <Reference Include="Ionic.Zip.Unity">
         <HintPath>C:/Users/Nicolas/Desktop/VR Projects/vr-app-/Uploader Test/Assets/Plugins/Ionic.Zip.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="GLTFSerialization">
-        <HintPath>C:/Users/Nicolas/Desktop/VR Projects/vr-app-/Uploader Test/Assets/Sketchfab For Unity/Dependencies/Libraries/GLTFSerialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-        <HintPath>C:/Users/Nicolas/Desktop/VR Projects/vr-app-/Uploader Test/Assets/Sketchfab For Unity/Dependencies/Libraries/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityGLTF">
-        <HintPath>C:/Users/Nicolas/Desktop/VR Projects/vr-app-/Uploader Test/Assets/Sketchfab For Unity/Dependencies/Libraries/UnityGLTF.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
         <HintPath>C:/Users/Nicolas/Desktop/VR Projects/vr-app-/Uploader Test/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
