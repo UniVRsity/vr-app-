@@ -13,23 +13,21 @@ public class Head_Prescence : MonoBehaviour
     void Start()
     {
         InvokeRepeating("tryInitialize", 0, 0.5f);
+        List<InputDevice> allDevices = new List<InputDevice>();
+        InputDevices.GetDevices(allDevices);
+        foreach (var device in allDevices)
+        {
+            Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", 
+              device.name, device.characteristics.ToString()));
+        }
     }
 
     void tryInitialize()
     {
         List<InputDevice> devices = new List<InputDevice>();
+        List<InputDevice> allDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(headsetCharacteristics, devices);
-
-        if (devices.Count > 0)
-        {
-            targetDevice = devices[0];
-
-            if (targetDevice.TryGetFeatureValue(CommonUsages.deviceAcceleration, out Vector3 ab))
-            {
-                Debug.Log("here");
-                Debug.Log(ab);
-            }
-        }
+        InputDevices.GetDevices(allDevices);
 
     }
 

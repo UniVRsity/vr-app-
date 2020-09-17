@@ -13,6 +13,8 @@ public class HandPresence : MonoBehaviour
     public List<GameObject> controllerPrefabs;
     private GameObject spawnController;
 
+    public GameObject target;
+
     private GameObject spawnedHandModel;
 
     private Animator handAnimator;
@@ -97,6 +99,8 @@ public class HandPresence : MonoBehaviour
                 spawnController.SetActive(false);
                 updateHandAnimation();
             }
+            
         }
+        
     }
 }
