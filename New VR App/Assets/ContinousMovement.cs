@@ -6,8 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ContinousMovement : MonoBehaviour
 {
+    public LayerMask groundLayer;
+    public float addtionalHeight = .2f;
     public XRNode inputSource;
-
     public XRNode headsetNode;
     public float gravity = -9.81f;
     private float fallingSpeed = 10.0f;
@@ -15,11 +16,7 @@ public class ContinousMovement : MonoBehaviour
 
     private Quaternion headsetRotation;
     private XRRig xrRig;
-
-
-
     public float speed = 1;
-
     private CharacterController character;
     // Start  called before the first frame update
     void Start()
@@ -29,21 +26,16 @@ public class ContinousMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
-        InputDevice headset = InputDevices.GetDeviceAtXRNode(headsetNode);
-        headset.TryGetFeatureValue(CommonUsages.centerEyeRotation, out headsetRotation);
-        
-
-        device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
-    }
 
     private void FixedUpdate()
     {
-        Quaternion headNYaw = Quaternion.Euler(0, xrRig.cameraGameObject.transform.rotation.eulerAngles.y, 0);
+        capsuleFollowHeadset();
+        InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
+        device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
+        Quaternion headNYaw = Quaternion.Euler(0, xrRig.cameraGameObject.transform.eulerAngles.y, 0);
         Vector3 direction =  headNYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
-        if ( isGrounded())
+        character.Move(direction * Time.fixedDeltaTime * speed);
+        if (isGrounded())
         {
             fallingSpeed = 0;
         }
@@ -51,11 +43,20 @@ public class ContinousMovement : MonoBehaviour
         {
             fallingSpeed += gravity*Time.fixedDeltaTime;
         }
-        character.Move(direction *Time.fixedDeltaTime * speed);
+        character.Move(Vector3.up * fallingSpeed * Time.fixedDeltaTime);
     }
 
+    void capsuleFollowHeadset()
+    {
+        character.height = xrRig.cameraInRigSpaceHeight + addtionalHeight; 
+        Vector3 capsuleCenter = transform.InverseTransformPoint(xrRig.cameraGameObject.transform.position);
+        character.center = new Vector3(capsuleCenter.x, capsuleCenter.y/2+ character.skinWidth, capsuleCenter.z);
+    }
     private bool isGrounded()
     {
-        if 
+        Vector3 rayStart = transform.TransformPoint(character.center);
+        float rayLength = character.center.y + 0.01f;
+        bool hasHit = Physics.SphereCast(rayStart, character.radius, Vector3.down, out RaycastHit hitInfo, rayLength, groundLayer);
+        return hasHit;
     }
 }
