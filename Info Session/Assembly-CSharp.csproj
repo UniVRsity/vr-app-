@@ -40,7 +40,14 @@
      <Compile Include="Assets\Altspace\Shared Assets\Paths.cs" />
      <None Include="Assets\Altspace\Export Assets\Shaders\MREDiffuseVertex.shader" />
      <None Include="Assets\Prefabs\Readme.txt" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\DissolveNoise.shader" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\Blend_TwoSides.shader" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\Blend_CenterGlow.shader" />
      <None Include="Assets\Altspace\Export Assets\Shaders\MREUnlit.shader" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\Blend_LinePath.shader" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\BlendDistort.shader" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\Fire.shader" />
+     <None Include="Assets\Hovl Studio\White mage spells\Shaders\Add_CenterGlow.shader" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
