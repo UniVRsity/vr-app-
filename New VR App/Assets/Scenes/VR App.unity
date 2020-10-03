@@ -5668,7 +5668,18 @@ MonoBehaviour:
       m_Calls: []
   m_OnActivate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 127590773}
+        m_MethodName: fireGun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
@@ -5740,8 +5751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputSource: 4
-  triggerPressed: 0
-  gripPressed: 0
+  bullet: {fileID: 5328811197179162604, guid: 721459f578d017e4299ffd7f7b27ac49, type: 3}
+  barrel: {fileID: 724299623}
+  speed: 4
 --- !u!1 &129037431
 GameObject:
   m_ObjectHideFlags: 0
@@ -7043,6 +7055,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &724299622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 724299623}
+  m_Layer: 8
+  m_Name: Barell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &724299623
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724299622}
+  m_LocalRotation: {x: 0.7312475, y: 0.055287633, z: -0.67981696, w: -0.008333418}
+  m_LocalPosition: {x: -0.08, y: -0, z: 0.058}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 127590771}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 176.389, y: 85.658, z: -5.299988}
 --- !u!1 &902703844
 GameObject:
   m_ObjectHideFlags: 0

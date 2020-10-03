@@ -9,6 +9,8 @@ public class Locomotion_Controller : MonoBehaviour
     public InputHelpers.Button teleportActivationButton;
     public float activationThreshold = 0.2f;
 
+    public bool enableLeftTeleport {get; set;} = true;
+    public bool enableRightTeleport {get; set;} = true;
     
     public bool checkIfActivated(XRController controller)
     {
@@ -21,14 +23,14 @@ public class Locomotion_Controller : MonoBehaviour
     {
         if (leftTeleportRay)
         {
-            if (checkIfActivated(leftTeleportRay))
+            if (checkIfActivated(leftTeleportRay)&&enableLeftTeleport)
             {
                 StartCoroutine("DelayLeft");
             }
         }
         if (rightTeleportRay)
         {
-        if (checkIfActivated(rightTeleportRay))
+        if (checkIfActivated(rightTeleportRay) && enableRightTeleport)
         {
             StartCoroutine("DelayRight");
         }
