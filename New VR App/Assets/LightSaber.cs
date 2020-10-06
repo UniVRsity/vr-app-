@@ -7,20 +7,56 @@ public class LightSaber : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
-   private Animator LightSaberAnimator;
-   void Start()
+    public GameObject lightSaber;
+    private Animator lightSaberAnimator;
+    public AudioSource audioSource;
+    public AudioClip lightSaberOn;
+    public AudioClip lightSaberOff;
+    public AudioClip saberSwoosh;
+
+    private Rigidbody saberRigidBody;
+    private bool ready = true;
+
+    private bool lightSaberHeld;
+
+    void Start()
     {
-        LightSaberAnimator = GetComponent<Animator>();
+        lightSaberAnimator = GetComponent<Animator>();
+        saberRigidBody = lightSaber.GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        Debug.Log(saberRigidBody.velocity.magnitude);
+
+        if (saberRigidBody.velocity.magnitude > 0.5 && lightSaberHeld && ready)
+        {
+            StartCoroutine("PlayAndWait");
+
+        }
     }
 
     public void GrowLightSaber()
     {
-        LightSaberAnimator.SetTrigger("GrowSaber");
-        LightSaberAnimator.ResetTrigger("ShrinkSaber");
+        lightSaberHeld = true;
+        lightSaberAnimator.SetTrigger("GrowSaber");
+        lightSaberAnimator.ResetTrigger("ShrinkSaber");
+        audioSource.PlayOneShot(lightSaberOn);
     }
     public void ShrinkLightSaber()
     {
-        LightSaberAnimator.SetTrigger("ShrinkSaber");
-        LightSaberAnimator.ResetTrigger("GrowSaber");
+        lightSaberHeld = false;
+        lightSaberAnimator.SetTrigger("ShrinkSaber");
+        lightSaberAnimator.ResetTrigger("GrowSaber");
+        audioSource.PlayOneShot(lightSaberOff);
+    }
+
+    private IEnumerator PlayAndWait()
+    {
+        audioSource.PlayOneShot(saberSwoosh);
+        ready = false;
+        yield return new WaitForSeconds(1f);
+        ready = true;
+
     }
 }

@@ -15,13 +15,6 @@ public class gun : MonoBehaviour
 
     public AudioSource audioSource;
 
-    public AudioClip audioClip;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
     public void fireGun(){
         bullet = Instantiate(bullet, barrel.position, barrel.rotation);
         bullet.GetComponent<Rigidbody>().AddForce(barrel.forward*speed, ForceMode.Impulse);
