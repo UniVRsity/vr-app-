@@ -9,5 +9,15 @@ public class LightSaber : MonoBehaviour
     public void TurnOnLightSaber()
     {
         LightSaberAnimator.SetTrigger("Turn LightSaber On");
+        LightSaberAnimator.ResetTrigger("Turn LightSaber Off");
     }
+
+    public void TurnLightSaberOff()
+    {
+        LightSaberAnimator.SetTrigger("Turn LightSaber Off");
+        LightSaberAnimator.ResetTrigger("Turn LightSaber On");
+
+
+    }
+
 }
