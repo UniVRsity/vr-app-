@@ -26,12 +26,10 @@ public class colorChange : MonoBehaviour
     }
      public void changeColor()
     {
-        Debug.Log("here");
         target.SetColor("_Color", Color.green);
     }
     void Update()
     {
-        Debug.Log(targetDevice.isValid);
         if (!targetDevice.isValid)
         {
             tryInitialize();
@@ -40,7 +38,6 @@ public class colorChange : MonoBehaviour
         if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue) && 
         targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue) && gripValue >0.5f && triggerValue >0.5f)
             {
-                Debug.Log("here");
                 this.changeColor();
             }
     }
